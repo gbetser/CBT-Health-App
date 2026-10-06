@@ -77,7 +77,7 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
 </style>
 </head>
 <body>
-<header><div class="head"><div class="brand">CBT+<small>חרדת בריאות · תרגול מבוסס התנהגות</small></div><div class="pill" id="todayPill"></div></div></header>
+<header><div class="head"><div class="brand">CBT+<small>חרדת בריאות · תרגול מבוסס התנהגות</small></div><div><div class="pill" id="todayPill"></div><div id="buildVersion" style="font-size:10px;color:#98a2b3;text-align:left;margin-top:3px">v5</div></div></div></header>
 <main>
 <section class="screen active" id="home">
   <div class="card hero"><h2>המטרה: פחות פעולות ביטחון, יותר חזרה לשגרה</h2><div class="muted">לא מודדים הצלחה לפי “כמה הרגשתי רגוע”, אלא לפי היכולת להישאר עם אי־ודאות בלי לבדוק מיד.</div><div class="heroBtns"><button class="good" onclick="showScreen('help')">גל חרדה עכשיו</button><button class="secondary" onclick="showScreen('event')">תעד אירוע CBT</button></div></div>
@@ -280,7 +280,7 @@ async function askWeb(){
  const q=question.value.trim();if(!q)return;answerBox.innerHTML='<div class="muted">מחפש ומנסח תשובה…</div>';
  try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');answerBox.innerHTML='<pre class="answer"></pre>';answerBox.querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const b=document.createElement('div');b.className='sources';b.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;b.appendChild(a)});answerBox.appendChild(b)}}catch(e){answerBox.innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע: '+esc(e.message||'שגיאה לא ידועה')+'</div>'}
 }
-if('serviceWorker' in navigator)window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js');await reg.update()}catch(e){}});
+if('serviceWorker' in navigator)window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js?v=5',{updateViaCache:'none'});await reg.update()}catch(e){}});
 enhanceSelects();renderHome();renderEvents();renderExposures();renderProfile();
 </script>
 </body></html>
