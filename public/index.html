@@ -22,7 +22,42 @@ button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:70
 .event{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:#fff}.event .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:#eef4ff;color:#0f5bd3;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin:2px}.progressbar{height:10px;background:#eef2f6;border-radius:999px;overflow:hidden}.progressbar>div{height:100%;background:var(--green);width:0}.profilebox{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.profilelist{margin:6px 0 0;padding-right:18px;line-height:1.7}.profilelist li{margin-bottom:3px}
 .bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#667085;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
 pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);padding:12px;border-radius:12px;line-height:1.55}.sources a{display:block;margin:8px 0;color:var(--blue);text-decoration:none;word-break:break-word}
-@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.heroBtns{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){
+  html{font-size:18px}
+  body{font-size:18px;line-height:1.55}
+  header{padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
+  .brand{font-size:24px;line-height:1.15}
+  .brand small{font-size:14px;line-height:1.35;margin-top:4px}
+  .pill{font-size:14px;padding:8px 11px}
+  main{padding:12px}
+  .card{padding:17px;margin-bottom:13px;border-radius:17px}
+  h2{font-size:22px;line-height:1.3;margin-bottom:12px}
+  h3{font-size:19px;line-height:1.35;margin-bottom:9px}
+  .muted{font-size:16px;line-height:1.6}
+  .tiny{font-size:14px}
+  label{font-size:17px;line-height:1.4;margin-bottom:8px}
+  input,textarea,select{font-size:17px;line-height:1.45;padding:13px 14px;border-radius:13px;min-height:50px}
+  textarea{min-height:104px}
+  button{font-size:17px;line-height:1.25;padding:14px 15px;min-height:52px;border-radius:13px}
+  .heroBtns{grid-template-columns:1fr;gap:9px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .stat{font-size:15px;padding:14px}
+  .stat b{font-size:25px;margin-top:5px}
+  .helpstep{gap:12px;padding:14px;margin-bottom:11px;border-radius:15px}
+  .helpstep h3{font-size:18px}
+  .num{min-width:36px;height:36px;font-size:17px}
+  .mantra{font-size:18px;line-height:1.75;padding:15px}
+  .notice{font-size:15px;line-height:1.55;padding:14px}
+  .event{padding:14px}
+  .event .meta{font-size:14px}
+  .tag{font-size:13px;padding:5px 9px}
+  .profilebox{font-size:16px;line-height:1.6;padding:14px}
+  pre.answer{font-size:16px;line-height:1.65;padding:14px}
+  .bottom{padding:7px 6px calc(7px + env(safe-area-inset-bottom));gap:3px}
+  .navbtn{font-size:12px;line-height:1.15;padding:9px 3px;min-height:48px}
+  .score{min-width:58px;font-size:17px;padding:9px}
+  .range{gap:12px}
+}
 </style>
 </head>
 <body>
