@@ -22,6 +22,16 @@ button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:70
 .event{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:#fff}.event .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:#eef4ff;color:#0f5bd3;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin:2px}.progressbar{height:10px;background:#eef2f6;border-radius:999px;overflow:hidden}.progressbar>div{height:100%;background:var(--green);width:0}.profilebox{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.profilelist{margin:6px 0 0;padding-right:18px;line-height:1.7}.profilelist li{margin-bottom:3px}
 .bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#667085;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
 pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);padding:12px;border-radius:12px;line-height:1.55}.sources a{display:block;margin:8px 0;color:var(--blue);text-decoration:none;word-break:break-word}
+.native-select-hidden{display:none!important}
+.cselect-btn{width:100%;background:#fff;border:1px solid #cfd6e1;color:var(--text);text-align:right;font-weight:400;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cselect-btn:after{content:"⌄";font-size:.95em;color:var(--muted)}
+.cselect-overlay{position:fixed;inset:0;background:rgba(17,24,39,.38);z-index:1000;display:none;align-items:flex-end}
+.cselect-overlay.open{display:flex}
+.cselect-sheet{width:100%;max-height:72vh;background:#fff;border-radius:20px 20px 0 0;padding:12px 12px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -8px 32px rgba(0,0,0,.18);overflow:auto}
+.cselect-title{font-weight:800;font-size:18px;padding:8px 6px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.cselect-option{width:100%;background:#fff;color:var(--text);text-align:right;font-weight:400;border-bottom:1px solid #f0f2f5;border-radius:0;padding:14px 8px;min-height:48px}
+.cselect-option.selected{background:var(--blue2);color:var(--blue);font-weight:700}
+.cselect-close{width:100%;margin-top:10px;background:#eef2f6;color:var(--text)}
 @media(max-width:620px){
   html{font-size:18px}
   body{font-size:18px;line-height:1.55}
@@ -57,6 +67,10 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
   pre.answer{font-size:16px;line-height:1.65;padding:14px}
   .bottom{padding:7px 6px calc(7px + env(safe-area-inset-bottom));gap:3px}
   .navbtn{font-size:12px;line-height:1.15;padding:9px 3px;min-height:48px}
+  .cselect-btn{font-size:16px;line-height:1.35;padding:12px 14px;min-height:50px}
+  .cselect-title{font-size:18px}
+  .cselect-option{font-size:16px;line-height:1.4;padding:13px 10px;min-height:50px}
+  .cselect-close{font-size:16px}
   .score{min-width:58px;font-size:17px;padding:9px}
   .range{gap:12px}
 }
@@ -170,6 +184,13 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
 <button class="navbtn" data-screen="knowledge" onclick="showScreen('knowledge')">ידע</button>
 <button class="navbtn" data-screen="progress" onclick="showScreen('progress')">התקדמות</button>
 </nav>
+<div id="cselectOverlay" class="cselect-overlay" onclick="if(event.target===this)closeCustomSelect()">
+  <div class="cselect-sheet" role="dialog" aria-modal="true">
+    <div id="cselectTitle" class="cselect-title">בחר אפשרות</div>
+    <div id="cselectOptions"></div>
+    <button class="cselect-close" onclick="closeCustomSelect()">סגור</button>
+  </div>
+</div>
 <script>
 const EVENT_KEY='cbt_events_v4', EXP_KEY='cbt_exposures_v4', TARGET_KEY='cbt_daily_target_v4', HELP_KEY='cbt_help_log_v2', PROFILE_KEY='cbt_personal_profile_v1';
 const $=id=>document.getElementById(id);
@@ -179,6 +200,41 @@ function arr(key){try{return JSON.parse(localStorage.getItem(key))||[]}catch{ret
 function saveArr(key,v){localStorage.setItem(key,JSON.stringify(v))}
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='progress')renderProgress();if(id==='event')renderEvents();if(id==='exposure')renderExposures();if(id==='home')renderHome();window.scrollTo(0,0)}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+let activeCustomSelect=null;
+function enhanceSelects(){
+  document.querySelectorAll('select').forEach(sel=>{
+    if(sel.dataset.enhanced==='1')return;
+    sel.dataset.enhanced='1';
+    sel.classList.add('native-select-hidden');
+    const btn=document.createElement('button');
+    btn.type='button';btn.className='cselect-btn';
+    btn.textContent=sel.options[sel.selectedIndex]?.text||'בחר אפשרות';
+    btn.addEventListener('click',()=>openCustomSelect(sel,btn));
+    sel.insertAdjacentElement('afterend',btn);
+    sel.addEventListener('change',()=>{btn.textContent=sel.options[sel.selectedIndex]?.text||'בחר אפשרות'});
+  });
+}
+function openCustomSelect(sel,btn){
+  activeCustomSelect={sel,btn};
+  const label=sel.closest('.row')?.querySelector('label')?.textContent?.trim()||'בחר אפשרות';
+  cselectTitle.textContent=label;
+  cselectOptions.innerHTML='';
+  Array.from(sel.options).forEach(opt=>{
+    if(opt.value===''&&opt.text.trim()==='')return;
+    const b=document.createElement('button');
+    b.type='button';b.className='cselect-option'+(opt.selected?' selected':'');
+    b.textContent=opt.text;
+    b.onclick=()=>{sel.value=opt.value;sel.dispatchEvent(new Event('change',{bubbles:true}));btn.textContent=opt.text;closeCustomSelect()};
+    cselectOptions.appendChild(b);
+  });
+  cselectOverlay.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCustomSelect(){
+  cselectOverlay.classList.remove('open');
+  document.body.style.overflow='';
+  activeCustomSelect=null;
+}
 function syncBeliefs(){beliefBeforeLab.textContent=beliefBefore.value;beliefBeforeBox.textContent=beliefBefore.value+'%';beliefAfterLab.textContent=beliefAfter.value;beliefAfterBox.textContent=beliefAfter.value+'%'}
 beliefBefore.oninput=syncBeliefs;beliefAfter.oninput=syncBeliefs;syncBeliefs();
 
@@ -225,6 +281,6 @@ async function askWeb(){
  try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');answerBox.innerHTML='<pre class="answer"></pre>';answerBox.querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const b=document.createElement('div');b.className='sources';b.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;b.appendChild(a)});answerBox.appendChild(b)}}catch(e){answerBox.innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע: '+esc(e.message||'שגיאה לא ידועה')+'</div>'}
 }
 if('serviceWorker' in navigator)window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js');await reg.update()}catch(e){}});
-renderHome();renderEvents();renderExposures();renderProfile();
+enhanceSelects();renderHome();renderEvents();renderExposures();renderProfile();
 </script>
 </body></html>
