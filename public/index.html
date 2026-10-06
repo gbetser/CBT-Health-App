@@ -10,83 +10,153 @@
 <link rel="apple-touch-icon" href="/icon.svg">
 <title>CBT+ חרדת בריאות</title>
 <style>
-:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#6b7280;--line:#e5e7eb;--blue:#0f5bd3;--blue2:#eaf2ff;--green:#12804a;--green2:#ecfdf3;--amber:#a15c00;--amber2:#fff7e6;--red:#b42318;--red2:#fff0ee;--shadow:0 6px 20px rgba(25,45,80,.07)}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}body{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
-.head{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-size:21px;font-weight:800}.brand small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}.pill{background:var(--blue2);color:var(--blue);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
-main{max-width:900px;margin:auto;padding:14px}.screen{display:none}.screen.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
-h2{font-size:19px;margin:0 0 12px}h3{font-size:16px;margin:0 0 9px}.muted{color:var(--muted);font-size:13px}.small{font-size:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.stat{background:#fafcff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:12px;color:var(--muted)}.stat b{display:block;color:var(--text);font-size:22px;margin-top:5px}
-button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#edf1f6}.good{background:var(--green2);color:var(--green)}.warn{background:var(--amber2);color:var(--amber)}.danger{background:var(--red2);color:var(--red)}
-.full{width:100%}.btnrow{display:flex;gap:9px;flex-wrap:wrap}label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}input,textarea,select{width:100%;font:inherit;border:1px solid #cfd6e1;border-radius:12px;padding:11px 12px;background:#fff}textarea{min-height:78px;resize:vertical}.row{margin-bottom:13px}.range{display:flex;gap:10px;align-items:center}.range input{padding:0}.score{min-width:42px;text-align:center;background:var(--blue2);color:var(--blue);border-radius:10px;padding:8px;font-weight:800}
-.hero{background:linear-gradient(135deg,#0f5bd3,#3c82f6);color:#fff}.hero .muted{color:#dbeafe}.heroBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{min-height:68px;text-align:right}
-.helpstep{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;background:#fff}.num{min-width:32px;height:32px;border-radius:50%;background:var(--blue2);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800}.mantra{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;line-height:1.6}
-.bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#64748b;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#e4e7ec;--blue:#0f5bd3;--blue2:#edf4ff;--green:#137a46;--green2:#edfdf3;--amber:#9a5b00;--amber2:#fff7e6;--red:#b42318;--red2:#fff1f0;--shadow:0 6px 20px rgba(25,45,80,.06)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}.head{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:21px;font-weight:800}.brand small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}.pill{background:var(--blue2);color:var(--blue);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
+main{max-width:900px;margin:auto;padding:14px}.screen{display:none}.screen.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}h2{font-size:19px;margin:0 0 12px}h3{font-size:16px;margin:0 0 8px}.muted{color:var(--muted);font-size:13px}.tiny{font-size:12px}.row{margin-bottom:14px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}input,textarea,select{width:100%;font:inherit;border:1px solid #cfd6e1;border-radius:12px;padding:11px 12px;background:#fff}textarea{min-height:78px;resize:vertical}input[type=range]{padding:0}.range{display:flex;align-items:center;gap:10px}.score{min-width:50px;text-align:center;border-radius:10px;padding:8px;background:var(--blue2);color:var(--blue);font-weight:800}
+button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#eef2f6}.good{background:var(--green2);color:var(--green)}.warn{background:var(--amber2);color:var(--amber)}.danger{background:var(--red2);color:var(--red)}.full{width:100%}.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+.hero{background:linear-gradient(135deg,#0f5bd3,#3b82f6);color:#fff}.hero .muted{color:#dbeafe}.heroBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fafcff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:12px;color:var(--muted)}.stat b{display:block;color:var(--text);font-size:22px;margin-top:4px}
+.helpstep{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px}.num{min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--blue2);color:var(--blue);font-weight:800}.mantra{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;line-height:1.65}.notice{background:var(--amber2);border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:12px;font-size:12px}
+.event{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:#fff}.event .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:#eef4ff;color:#0f5bd3;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin:2px}.progressbar{height:10px;background:#eef2f6;border-radius:999px;overflow:hidden}.progressbar>div{height:100%;background:var(--green);width:0}
+.bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#667085;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
 pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);padding:12px;border-radius:12px;line-height:1.55}.sources a{display:block;margin:8px 0;color:var(--blue);text-decoration:none;word-break:break-word}
-canvas{width:100%;height:220px;background:#fff;border-radius:12px}.notice{background:var(--amber2);border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:12px;font-size:12px}
-@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.heroBtns{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<header><div class="head"><div class="brand">CBT+<small>חרדת בריאות · יומן וכלים</small></div><div class="pill" id="todayPill"></div></div></header>
+<header><div class="head"><div class="brand">CBT+<small>חרדת בריאות · תרגול מבוסס התנהגות</small></div><div class="pill" id="todayPill"></div></div></header>
 <main>
 <section class="screen active" id="home">
-  <div class="card hero"><h2>איך אתה מרגיש עכשיו?</h2><div class="muted">אם יש גל חרדה, עבור מיד למסך “מה עוזר לי עכשיו”.</div><div class="heroBtns" style="margin-top:14px"><button class="good" onclick="showScreen('help')">מה עוזר לי עכשיו</button><button class="secondary" onclick="showScreen('daily')">דף יומי</button></div></div>
-  <div class="card"><h2>תמונה מהירה</h2><div class="grid3"><div class="stat">ימים שנרשמו<b id="statDays">0</b></div><div class="stat">ממוצע בוקר<b id="statMorning">—</b></div><div class="stat">ממוצע ערב<b id="statEvening">—</b></div></div></div>
-  <div class="card"><h2>קיצורי דרך</h2><div class="quick"><button class="secondary" onclick="showScreen('help')">גל חרדה עכשיו</button><button class="secondary" onclick="showScreen('knowledge')">שאלה מהרשת</button><button class="secondary" onclick="showScreen('daily')">בוקר / ערב</button><button class="secondary" onclick="showScreen('trends')">מגמות</button></div></div>
+  <div class="card hero"><h2>המטרה: פחות פעולות ביטחון, יותר חזרה לשגרה</h2><div class="muted">לא מודדים הצלחה לפי “כמה הרגשתי רגוע”, אלא לפי היכולת להישאר עם אי־ודאות בלי לבדוק מיד.</div><div class="heroBtns"><button class="good" onclick="showScreen('help')">גל חרדה עכשיו</button><button class="secondary" onclick="showScreen('event')">תעד אירוע CBT</button></div></div>
+  <div class="card"><h2>התקדמות התנהגותית</h2><div class="grid3"><div class="stat">אירועי CBT<b id="homeEvents">0</b></div><div class="stat">פעולות ביטחון שנדחו<b id="homeResisted">0</b></div><div class="stat">חשיפות שהושלמו<b id="homeExposures">0</b></div></div></div>
+  <div class="card"><h3>יעד להיום</h3><select id="dailyTarget"><option>לדחות בדיקה אחת לפחות ב־30 דקות</option><option>לא לחפש סימפטומים ברשת עד הערב</option><option>לא לבקש אישור חוזר על סימפטום שכבר נבדק</option><option>להמשיך בפעילות רגילה למרות תחושה גופנית קלה</option><option>לבצע חשיפה אחת לאי־ודאות</option></select><button class="primary full" style="margin-top:10px" onclick="saveTarget()">שמור יעד</button><div id="targetStatus" class="muted" style="margin-top:8px"></div></div>
+  <div class="card"><h3>עיקרון היום</h3><div class="mantra">אני לא צריך ודאות מוחלטת כדי להמשיך את היום. תחושה יכולה להיות לא נעימה בלי להיות מסוכנת, ואני בוחר פעולה לפי המציאות — לא לפי הדחף לבדוק.</div></div>
 </section>
+
 <section class="screen" id="help">
-  <div class="card"><h2>מה עוזר לי עכשיו</h2><div class="muted">מסך פעולה קצר. המטרה אינה להוכיח שאין סכנה, אלא לעזור למערכת להירגע בלי להיכנס למעגל בדיקות.</div></div>
+  <div class="card"><h2>מה עוזר לי עכשיו</h2><div class="muted">מסך פעולה בזמן גל חרדה. המטרה: לא לנהל ויכוח עם הגוף, אלא לצמצם את מעגל הבדיקה וההרגעה.</div></div>
   <div class="card">
-    <div class="helpstep"><div class="num">1</div><div><h3>עצור בדיקות ל־10 דקות</h3><div class="muted">לא דופק, לא לחץ דם, לא גוגל, לא לחיצה חוזרת על אזור בגוף.</div></div></div>
-    <div class="helpstep"><div class="num">2</div><div><h3>בחר פעולה שעוזרת לך בפועל</h3><div class="muted">מקלחת · שיחה · עבודה/עיסוק · הליכה רגועה · מוזיקה.</div></div></div>
-    <div class="helpstep"><div class="num">3</div><div><h3>נשימה רגועה</h3><div class="muted">שאיפה 4 שניות, נשיפה 6 שניות, במשך 2 דקות.</div></div></div>
-    <div class="helpstep"><div class="num">4</div><div><h3>משפט תזכורת</h3><div class="mantra">התחושה אמיתית, אבל לא כל תחושה היא סכנה. כבר היו לי גלים כאלה והם חלפו. אני לא חייב לפתור את זה עכשיו.</div></div></div>
-    <div class="helpstep"><div class="num">5</div><div><h3>חזור לפעילות</h3><div class="muted">בחר משימה קטנה ל־10 דקות והעבר את הקשב מהגוף אל הפעילות.</div></div></div>
+    <div class="helpstep"><div class="num">1</div><div><h3>עצור פעולות ביטחון ל־10 דקות</h3><div class="muted">לא למדוד, לא לבדוק בגוגל, לא ללחוץ שוב ושוב על הגוף, לא לבקש אישור נוסף.</div></div></div>
+    <div class="helpstep"><div class="num">2</div><div><h3>תן שם למה שקורה</h3><div class="muted">“יש כאן תחושה + פירוש מאיים + דחף לבדוק.” עצם הזיהוי מפחית אוטומטיות.</div></div></div>
+    <div class="helpstep"><div class="num">3</div><div><h3>נשימה רגועה, לא מאומצת</h3><div class="muted">שאיפה 4 שניות, נשיפה 6 שניות, למשך 2 דקות. לא כדי “להעלים” את התחושה אלא כדי להוריד עוררות.</div></div></div>
+    <div class="helpstep"><div class="num">4</div><div><h3>בחר פעולה שמחזירה לשגרה</h3><div class="muted">מקלחת · שיחה · עבודה · הליכה רגועה · משימה קצרה.</div></div></div>
+    <div class="helpstep"><div class="num">5</div><div><h3>משפט תזכורת</h3><div class="mantra">אני לא חייב לדעת עכשיו בדיוק מה התחושה אומרת. אם אין סימן אזהרה ברור, אני נותן לגל לעבור תוך כדי המשך הפעילות.</div></div></div>
   </div>
-  <div class="card"><h3>מה עוזר לי אישית</h3><div class="quick"><button class="good" onclick="logHelp('מקלחת')">מקלחת</button><button class="good" onclick="logHelp('שיחה')">שיחה</button><button class="good" onclick="logHelp('עבודה/עיסוק')">עבודה / עיסוק</button><button class="good" onclick="logHelp('הליכה')">הליכה רגועה</button></div><div id="helpStatus" class="muted" style="margin-top:10px"></div></div>
-  <div class="notice">סימפטום חדש, חריג או חמור — במיוחד כאב חזה משמעותי, קוצר נשימה חריג, עילפון או חולשה נוירולוגית — מצריך הערכה רפואית ולא שימוש במסך זה כתחליף.</div>
-</section>
-<section class="screen" id="daily">
-  <div class="card"><h2>דף יומי</h2>
-    <div class="row"><label>תאריך</label><input id="date" type="date"></div>
-    <div class="row"><label>דריכות בבוקר <span id="mLab">5</span>/10</label><div class="range"><input id="morning" type="range" min="0" max="10" value="5"><span class="score" id="mBox">5</span></div></div>
-    <div class="row"><label>מה אני מרגיש בגוף?</label><textarea id="body"></textarea></div>
-    <div class="row"><label>מה המוח אומר שזה אולי אומר?</label><textarea id="thought"></textarea></div>
-    <div class="row"><label>משימת CBT להיום</label><select id="goal"><option>לדחות בדיקה ב־30 דקות</option><option>לא לחפש סימפטומים עד הערב</option><option>לא לבקש אישור חוזר</option><option>להמשיך בפעילות למרות תחושה קלה</option></select></div>
-    <div class="row"><label>כמה פעמים רציתי לבדוק?</label><input id="urge" inputmode="numeric"></div>
-    <div class="row"><label>כמה פעמים לא הגבתי מיד?</label><input id="resisted" inputmode="numeric"></div>
-    <div class="row"><label>מה קרה כשלא בדקתי?</label><select id="result"><option value=""></option><option>עלתה</option><option>נשארה</option><option>ירדה לבד</option></select></div>
-    <div class="row"><label>הצלחה אחת היום</label><textarea id="success"></textarea></div>
-    <div class="row"><label>חרדה בערב <span id="eLab">3</span>/10</label><div class="range"><input id="evening" type="range" min="0" max="10" value="3"><span class="score" id="eBox">3</span></div></div>
-    <div class="btnrow"><button class="primary" onclick="saveDay()">שמור</button><button class="secondary" onclick="loadDay()">טען</button><button class="danger" onclick="deleteDay()">מחק</button></div><div class="muted" id="saveStatus" style="margin-top:8px"></div>
+  <div class="grid2">
+    <button class="good" onclick="logHelp('מקלחת')">מקלחת</button><button class="good" onclick="logHelp('שיחה')">שיחה</button><button class="good" onclick="logHelp('עבודה')">עבודה / עיסוק</button><button class="good" onclick="logHelp('הליכה')">הליכה רגועה</button>
   </div>
+  <div id="helpStatus" class="muted" style="margin:10px 0 14px"></div>
+  <div class="notice">סימפטום חדש, חריג או חמור מצריך שיקול רפואי מתאים. CBT אינו תחליף להערכה רפואית כשיש הצדקה לכך.</div>
 </section>
+
+<section class="screen" id="event">
+  <div class="card"><h2>אירוע CBT</h2><div class="muted">תעד רק אירועים משמעותיים. המטרה היא ללמוד את המעגל, לא לעקוב אחרי כל תחושה.</div></div>
+  <div class="card">
+    <div class="row"><label>מה היה הטריגר?</label><select id="trigger"><option>תחושה גופנית</option><option>כאב</option><option>דופק / פעימות</option><option>בטן / יציאה</option><option>גל חום / רעד</option><option>מידע רפואי שקראתי</option><option>מחשבה בלבד</option><option>אחר</option></select></div>
+    <div class="row"><label>תיאור קצר של הטריגר</label><textarea id="triggerText" placeholder="למשל: הרגשתי פעימה חזקה בזמן ישיבה"></textarea></div>
+    <div class="row"><label>מה הייתה המחשבה האוטומטית?</label><textarea id="automaticThought" placeholder="למשל: אולי יש לי בעיה בלב"></textarea></div>
+    <div class="row"><label>כמה האמנתי למחשבה באותו רגע? <span id="beliefBeforeLab">70</span>%</label><div class="range"><input id="beliefBefore" type="range" min="0" max="100" step="5" value="70"><span class="score" id="beliefBeforeBox">70%</span></div></div>
+    <div class="row"><label>איזו פעולת ביטחון רציתי לעשות?</label><select id="safetyBehavior"><option>למדוד דופק / לחץ דם</option><option>לחפש בגוגל / AI</option><option>לבקש אישור מאדם אחר</option><option>לפנות מיד לרופא למרות שכבר נבדקתי</option><option>למשש / ללחוץ שוב ושוב על הגוף</option><option>להפסיק פעילות</option><option>אחר</option></select></div>
+    <div class="row"><label>מה עשיתי בפועל?</label><select id="actualAction"><option>דחיתי את פעולת הביטחון</option><option>לא ביצעתי אותה</option><option>ביצעתי אותה חלקית</option><option>ביצעתי אותה מיד</option></select></div>
+    <div class="row"><label>כמה זמן הצלחתי לדחות?</label><select id="delayMinutes"><option value="0">לא דחיתי</option><option value="10">10 דקות</option><option value="30">30 דקות</option><option value="60">שעה</option><option value="120">שעתיים ומעלה</option></select></div>
+    <div class="row"><label>מה קרה לחרדה בלי בדיקה מיידית?</label><select id="anxietyCourse"><option>עלתה ואז ירדה לבד</option><option>נשארה ואז נחלשה</option><option>כמעט לא השתנתה</option><option>לא יודע</option></select></div>
+    <div class="row"><label>מה למדתי מהאירוע?</label><textarea id="learning" placeholder="למשל: הצלחתי לחזור לעבודה גם בלי למדוד דופק"></textarea></div>
+    <div class="row"><label>כמה אני מאמין עכשיו למחשבה המקורית? <span id="beliefAfterLab">35</span>%</label><div class="range"><input id="beliefAfter" type="range" min="0" max="100" step="5" value="35"><span class="score" id="beliefAfterBox">35%</span></div></div>
+    <div class="row"><label>פרשנות מאוזנת יותר</label><textarea id="balancedThought" placeholder="למשל: זו תחושה אמיתית, אבל אין לי כרגע מידע שמוכיח סכנה"></textarea></div>
+    <button class="primary full" onclick="saveEvent()">שמור אירוע</button><div id="eventStatus" class="muted" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>אירועים אחרונים</h3><div id="recentEvents"></div></div>
+</section>
+
+<section class="screen" id="exposure">
+  <div class="card"><h2>חשיפה לחרדת בריאות</h2><div class="muted">החשיפה אינה “להוכיח שהכול בסדר”. היא תרגול של אי־ודאות בלי פעולת ביטחון.</div></div>
+  <div class="card">
+    <div class="row"><label>מה אני מתרגל?</label><select id="exposureType"><option>להרגיש דופק בלי למדוד אותו</option><option>להמתין לפני בדיקת לחץ דם</option><option>להימנע מחיפוש סימפטום ברשת</option><option>לא למשש אזור בגוף</option><option>להמשיך פעילות למרות תחושה קלה</option><option>לא לבקש reassurance</option><option>אחר</option></select></div>
+    <div class="row"><label>תיאור החשיפה</label><textarea id="exposureText" placeholder="למשל: אחרי הליכה אשב 10 דקות בלי לבדוק דופק"></textarea></div>
+    <div class="row"><label>מה אני מצפה שיקרה?</label><textarea id="prediction" placeholder="למשל: ארגיש שהחרדה תעלה ולא אצליח להתאפק"></textarea></div>
+    <div class="row"><label>בוצע?</label><select id="completed"><option value="yes">כן</option><option value="partial">חלקית</option><option value="no">לא</option></select></div>
+    <div class="row"><label>מה קרה בפועל?</label><textarea id="actualOutcome" placeholder="למשל: החרדה עלתה ואז ירדה, ולא בדקתי"></textarea></div>
+    <div class="row"><label>מה למדתי?</label><textarea id="exposureLearning"></textarea></div>
+    <button class="primary full" onclick="saveExposure()">שמור חשיפה</button><div id="exposureStatus" class="muted" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h3>חשיפות אחרונות</h3><div id="recentExposures"></div></div>
+</section>
+
+<section class="screen" id="progress">
+  <div class="card"><h2>התקדמות</h2><div class="muted">המדדים כאן התנהגותיים: פחות בדיקות, יותר דחייה, יותר חזרה לשגרה.</div></div>
+  <div class="card"><div class="grid3"><div class="stat">אירועים<b id="pEvents">0</b></div><div class="stat">דחיות ≥30 דק׳<b id="pDelays">0</b></div><div class="stat">חשיפות שהושלמו<b id="pExposures">0</b></div></div></div>
+  <div class="card"><h3>שיעור עמידה מול פעולת ביטחון</h3><div class="progressbar"><div id="resistBar"></div></div><div id="resistText" class="muted" style="margin-top:8px"></div></div>
+  <div class="card"><h3>מה השתנה באמונה למחשבה המאיימת?</h3><div id="beliefStats" class="muted">אין מספיק נתונים.</div></div>
+  <div class="card"><h3>דפוסים אחרונים</h3><div id="patterns" class="muted">אין עדיין מספיק נתונים.</div></div>
+</section>
+
 <section class="screen" id="knowledge">
-  <div class="card"><h2>שאלה על נושא שעולה אצלי</h2><div class="muted">התשובה יכולה להשתמש בחיפוש רשת עדכני. היומן נשלח רק אם תבחר לכלול אותו.</div>
-    <div class="row" style="margin-top:12px"><label>השאלה שלך</label><textarea id="question" placeholder="למשל: למה מתח יכול לגרום לפרפרים בבטן?"></textarea></div>
-    <div class="row"><label><input id="includeJournal" type="checkbox" style="width:auto"> כלול את נתוני היום בשאלה</label></div>
-    <button class="primary full" onclick="askWeb()">שאל</button><div id="answerBox" style="margin-top:12px"></div>
-  </div>
-  <div class="notice">האפליקציה אינה מיועדת לאבחן מחלה. בשאלות רפואיות היא נותנת מידע כללי, מקורות וסימני אזהרה רלוונטיים.</div>
+  <div class="card"><h2>שאלה על נושא שעולה אצלי</h2><div class="muted">השתמש בזה לקבלת מידע והקשר — לא כפעולת reassurance חוזרת על אותו סימפטום.</div>
+  <div class="row" style="margin-top:12px"><label>השאלה שלך</label><textarea id="question" placeholder="למשל: למה מתח יכול להשפיע על מערכת העיכול?"></textarea></div>
+  <button class="primary full" onclick="askWeb()">שאל</button><div id="answerBox" style="margin-top:12px"></div></div>
+  <div class="notice">אם כבר שאלת/בדקת את אותו סימפטום וקיבלת תשובה רפואית מספקת, שקול קודם להשתמש במסך “גל חרדה עכשיו” או לתעד אירוע CBT במקום לחפש אישור נוסף.</div>
 </section>
-<section class="screen" id="trends"><div class="card"><h2>מגמות</h2><canvas id="chart" width="700" height="220"></canvas><div class="muted">כחול = בוקר · ירוק = ערב · 14 הימים האחרונים.</div></div><div class="card"><h3>דפוסים</h3><div id="patternText" class="muted">עדיין אין מספיק נתונים.</div></div></section>
 </main>
-<nav class="bottom"><button class="navbtn active" data-screen="home" onclick="showScreen('home')">בית</button><button class="navbtn" data-screen="help" onclick="showScreen('help')">עוזר עכשיו</button><button class="navbtn" data-screen="daily" onclick="showScreen('daily')">יומן</button><button class="navbtn" data-screen="knowledge" onclick="showScreen('knowledge')">ידע</button><button class="navbtn" data-screen="trends" onclick="showScreen('trends')">מגמות</button></nav>
+<nav class="bottom">
+<button class="navbtn active" data-screen="home" onclick="showScreen('home')">בית</button>
+<button class="navbtn" data-screen="event" onclick="showScreen('event')">אירוע CBT</button>
+<button class="navbtn" data-screen="exposure" onclick="showScreen('exposure')">חשיפה</button>
+<button class="navbtn" data-screen="knowledge" onclick="showScreen('knowledge')">ידע</button>
+<button class="navbtn" data-screen="progress" onclick="showScreen('progress')">התקדמות</button>
+</nav>
 <script>
-const KEY='cbt_plus_v3',HELPKEY='cbt_help_log_v1', $=id=>document.getElementById(id);
-function isoToday(){const d=new Date(),o=d.getTimezoneOffset();return new Date(d.getTime()-o*60000).toISOString().slice(0,10)}
-$('todayPill').textContent=new Date().toLocaleDateString('he-IL');$('date').value=isoToday();
-function db(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}} function saveDB(x){localStorage.setItem(KEY,JSON.stringify(x))}
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='trends')drawChart();if(id==='home')refreshStats();window.scrollTo(0,0)}
-function sync(){$('mLab').textContent=$('mBox').textContent=$('morning').value;$('eLab').textContent=$('eBox').textContent=$('evening').value}$('morning').oninput=sync;$('evening').oninput=sync;
-function collect(){return{date:$('date').value,morning:+$('morning').value,body:$('body').value,thought:$('thought').value,goal:$('goal').value,urge:$('urge').value,resisted:$('resisted').value,result:$('result').value,success:$('success').value,evening:+$('evening').value}}
-function fill(x={}){$('morning').value=x.morning??5;$('body').value=x.body??'';$('thought').value=x.thought??'';$('goal').value=x.goal??$('goal').options[0].value;$('urge').value=x.urge??'';$('resisted').value=x.resisted??'';$('result').value=x.result??'';$('success').value=x.success??'';$('evening').value=x.evening??3;sync()}
-function saveDay(){let x=db(),d=collect();x[d.date]=d;saveDB(x);$('saveStatus').textContent='נשמר';refreshStats()}function loadDay(){let x=db();fill(x[$('date').value]||{});$('saveStatus').textContent=x[$('date').value]?'נטען':'אין נתונים לתאריך זה'}function deleteDay(){let x=db();if(x[$('date').value]&&confirm('למחוק את היום?')){delete x[$('date').value];saveDB(x);fill({});refreshStats()}}
-function refreshStats(){const a=Object.values(db());$('statDays').textContent=a.length;let m=a.map(x=>+x.morning).filter(Number.isFinite),e=a.map(x=>+x.evening).filter(Number.isFinite);$('statMorning').textContent=m.length?(m.reduce((a,b)=>a+b,0)/m.length).toFixed(1):'—';$('statEvening').textContent=e.length?(e.reduce((a,b)=>a+b,0)/e.length).toFixed(1):'—'}
-function logHelp(name){let arr=[];try{arr=JSON.parse(localStorage.getItem(HELPKEY))||[]}catch{}arr.push({ts:new Date().toISOString(),name});localStorage.setItem(HELPKEY,JSON.stringify(arr));$('helpStatus').textContent='נרשם: '+name+' · תן לפעולה 10 דקות בלי בדיקות.'}
-async function askWeb(){const q=$('question').value.trim();if(!q)return;$('answerBox').innerHTML='<div class="muted">מחפש ומנסח תשובה…</div>';let payload={question:q};if($('includeJournal').checked)payload.journal=collect();try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');let html='<pre class="answer"></pre>';$('answerBox').innerHTML=html;$('answerBox').querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const box=document.createElement('div');box.className='sources';box.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;box.appendChild(a)});$('answerBox').appendChild(box)}}catch(e){$('answerBox').innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע: '+(e.message||'שגיאה לא ידועה')+'</div>'}}
-function drawChart(){const c=$('chart'),ctx=c.getContext('2d'),rows=Object.values(db()).sort((a,b)=>a.date.localeCompare(b.date)).slice(-14);ctx.clearRect(0,0,c.width,c.height);ctx.strokeStyle='#d8dee9';ctx.lineWidth=1;for(let i=0;i<=5;i++){let y=20+i*36;ctx.beginPath();ctx.moveTo(35,y);ctx.lineTo(680,y);ctx.stroke()}if(!rows.length){ctx.fillStyle='#6b7280';ctx.font='16px Arial';ctx.fillText('אין עדיין נתונים',280,110);$('patternText').textContent='עדיין אין מספיק נתונים.';return}function line(key,color){ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();rows.forEach((r,i)=>{let x=45+i*(620/Math.max(1,rows.length-1)),y=200-(+r[key])*17;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()}line('morning','#0f5bd3');line('evening','#12804a');const improved=rows.filter(r=>+r.evening<+r.morning).length;$('patternText').textContent=rows.length>=3?`ב־${improved} מתוך ${rows.length} ימים רמת הערב הייתה נמוכה מרמת הבוקר.`:'נדרשים לפחות 3 ימים כדי לזהות דפוס.'}
-if('serviceWorker' in navigator){window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js');await reg.update();}catch(e){console.error('SW update failed',e)}});}sync();loadDay();refreshStats();
+const EVENT_KEY='cbt_events_v4', EXP_KEY='cbt_exposures_v4', TARGET_KEY='cbt_daily_target_v4', HELP_KEY='cbt_help_log_v2';
+const $=id=>document.getElementById(id);
+$('todayPill').textContent=new Date().toLocaleDateString('he-IL');
+
+function arr(key){try{return JSON.parse(localStorage.getItem(key))||[]}catch{return[]}}
+function saveArr(key,v){localStorage.setItem(key,JSON.stringify(v))}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='progress')renderProgress();if(id==='event')renderEvents();if(id==='exposure')renderExposures();if(id==='home')renderHome();window.scrollTo(0,0)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function syncBeliefs(){beliefBeforeLab.textContent=beliefBefore.value;beliefBeforeBox.textContent=beliefBefore.value+'%';beliefAfterLab.textContent=beliefAfter.value;beliefAfterBox.textContent=beliefAfter.value+'%'}
+beliefBefore.oninput=syncBeliefs;beliefAfter.oninput=syncBeliefs;syncBeliefs();
+
+function saveTarget(){localStorage.setItem(TARGET_KEY,JSON.stringify({date:new Date().toISOString().slice(0,10),target:dailyTarget.value}));targetStatus.textContent='היעד נשמר.'}
+function logHelp(name){const a=arr(HELP_KEY);a.push({ts:new Date().toISOString(),name});saveArr(HELP_KEY,a);helpStatus.textContent='נרשם: '+name+' · תן לפעולה 10 דקות בלי בדיקות.'}
+
+function saveEvent(){
+ const e={id:Date.now(),ts:new Date().toISOString(),trigger:trigger.value,triggerText:triggerText.value.trim(),thought:automaticThought.value.trim(),beliefBefore:+beliefBefore.value,safety:safetyBehavior.value,action:actualAction.value,delay:+delayMinutes.value,course:anxietyCourse.value,learning:learning.value.trim(),beliefAfter:+beliefAfter.value,balanced:balancedThought.value.trim()};
+ const a=arr(EVENT_KEY);a.push(e);saveArr(EVENT_KEY,a);eventStatus.textContent='האירוע נשמר.';renderEvents();renderHome();
+}
+function renderEvents(){
+ const a=arr(EVENT_KEY).slice(-5).reverse();
+ recentEvents.innerHTML=a.length?a.map(e=>'<div class="event"><div class="meta">'+new Date(e.ts).toLocaleString('he-IL')+'</div><span class="tag">'+esc(e.trigger)+'</span><span class="tag">'+esc(e.action)+'</span><div style="margin-top:8px"><b>'+esc(e.thought||e.triggerText||'אירוע')+'</b></div><div class="muted">אמונה: '+e.beliefBefore+'% → '+e.beliefAfter+'% · דחייה: '+e.delay+' דק׳</div><div class="muted" style="margin-top:5px">'+esc(e.learning)+'</div></div>').join(''):'<div class="muted">עדיין אין אירועים שמורים.</div>';
+}
+function saveExposure(){
+ const e={id:Date.now(),ts:new Date().toISOString(),type:exposureType.value,text:exposureText.value.trim(),prediction:prediction.value.trim(),completed:completed.value,outcome:actualOutcome.value.trim(),learning:exposureLearning.value.trim()};
+ const a=arr(EXP_KEY);a.push(e);saveArr(EXP_KEY,a);exposureStatus.textContent='החשיפה נשמרה.';renderExposures();renderHome();
+}
+function renderExposures(){
+ const a=arr(EXP_KEY).slice(-5).reverse();
+ recentExposures.innerHTML=a.length?a.map(e=>'<div class="event"><div class="meta">'+new Date(e.ts).toLocaleString('he-IL')+'</div><span class="tag">'+esc(e.type)+'</span><div class="muted" style="margin-top:6px">תחזית: '+esc(e.prediction)+'</div><div style="margin-top:6px"><b>בפועל:</b> '+esc(e.outcome)+'</div><div class="muted">למידה: '+esc(e.learning)+'</div></div>').join(''):'<div class="muted">עדיין אין חשיפות שמורות.</div>';
+}
+function renderHome(){
+ const ev=arr(EVENT_KEY), ex=arr(EXP_KEY);
+ homeEvents.textContent=ev.length;
+ homeResisted.textContent=ev.filter(e=>e.action==='דחיתי את פעולת הביטחון'||e.action==='לא ביצעתי אותה').length;
+ homeExposures.textContent=ex.filter(e=>e.completed==='yes').length;
+ const t=JSON.parse(localStorage.getItem(TARGET_KEY)||'null');if(t?.target){dailyTarget.value=t.target;targetStatus.textContent='היעד האחרון: '+t.target}
+}
+function renderProgress(){
+ const ev=arr(EVENT_KEY), ex=arr(EXP_KEY);
+ pEvents.textContent=ev.length;pDelays.textContent=ev.filter(e=>e.delay>=30).length;pExposures.textContent=ex.filter(e=>e.completed==='yes').length;
+ const resisted=ev.filter(e=>e.action==='דחיתי את פעולת הביטחון'||e.action==='לא ביצעתי אותה').length;
+ const pct=ev.length?Math.round(resisted/ev.length*100):0;resistBar.style.width=pct+'%';resistText.textContent=ev.length?pct+'% מהאירועים הסתיימו בלי פעולה מיידית של בדיקה/הרגעה.':'אין מספיק נתונים.';
+ if(ev.length){const avgBefore=ev.reduce((s,e)=>s+e.beliefBefore,0)/ev.length,avgAfter=ev.reduce((s,e)=>s+e.beliefAfter,0)/ev.length;beliefStats.textContent='ממוצע אמונה במחשבה המאיימת: '+avgBefore.toFixed(0)+'% בזמן האירוע לעומת '+avgAfter.toFixed(0)+'% לאחר ההתמודדות.'}else beliefStats.textContent='אין מספיק נתונים.';
+ if(ev.length>=3){const delays=ev.filter(e=>e.delay>=30).length;const drops=ev.filter(e=>e.beliefAfter<e.beliefBefore).length;patterns.textContent='ב־'+delays+' אירועים הצלחת לדחות פעולה לפחות 30 דקות, וב־'+drops+' אירועים האמונה במחשבה המאיימת ירדה לאחר ההתמודדות.'}else patterns.textContent='נדרשים לפחות 3 אירועים כדי לזהות דפוסים.';
+}
+async function askWeb(){
+ const q=question.value.trim();if(!q)return;answerBox.innerHTML='<div class="muted">מחפש ומנסח תשובה…</div>';
+ try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');answerBox.innerHTML='<pre class="answer"></pre>';answerBox.querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const b=document.createElement('div');b.className='sources';b.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;b.appendChild(a)});answerBox.appendChild(b)}}catch(e){answerBox.innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע: '+esc(e.message||'שגיאה לא ידועה')+'</div>'}
+}
+if('serviceWorker' in navigator)window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js');await reg.update()}catch(e){}});
+renderHome();renderEvents();renderExposures();
 </script>
 </body></html>
