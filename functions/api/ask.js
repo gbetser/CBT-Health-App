@@ -17,6 +17,6 @@ export async function onRequestPost(context){
 העדף גופי בריאות, הנחיות מקצועיות, מאמרים רפואיים ומוסדות אקדמיים.
 ענה בעברית אלא אם התבקש אחרת. אם מתאים, סיים ב"מה לעשות עכשיו" קצר בגישת CBT.`;
  const input="שאלת המשתמש:\n"+question+(journal?"\n\nנתוני היומן שהמשתמש בחר לצרף:\n"+JSON.stringify(journal,null,2):"");
- let r;try{r=await fetch(OPENAI_URL,{method:"POST",headers:{Authorization:`Bearer ${env.OPENAI_API_KEY}`,"Content-Type":"application/json"},body:JSON.stringify({model:env.OPENAI_MODEL||"gpt-5.6-luna",tools:[{type:"web_search"}],instructions,input,max_output_tokens:1800})})}catch{return j({error:"Could not reach OpenAI"},502)}
+ let r;try{r=await fetch(OPENAI_URL,{method:"POST",headers:{Authorization:`Bearer ${env.OPENAI_API_KEY}`,"Content-Type":"application/json"},body:JSON.stringify({model:env.OPENAI_MODEL||"gpt-6-luna",tools:[{type:"web_search"}],instructions,input,max_output_tokens:1800})})}catch{return j({error:"Could not reach OpenAI"},502)}
  const d=await r.json();if(!r.ok)return j({error:d?.error?.message||"OpenAI request failed"},502);const out=extract(d);return j({answer:out.answer||"לא התקבלה תשובה.",sources:out.sources,response_id:d.id||null,model:d.model||null});
 }
