@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f5bd3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CBT+">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon.svg">
+<title>CBT+ חרדת בריאות</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#6b7280;--line:#e5e7eb;--blue:#0f5bd3;--blue2:#eaf2ff;--green:#12804a;--green2:#ecfdf3;--amber:#a15c00;--amber2:#fff7e6;--red:#b42318;--red2:#fff0ee;--shadow:0 6px 20px rgba(25,45,80,.07)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}body{padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 14px 10px}
+.head{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{font-size:21px;font-weight:800}.brand small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:3px}.pill{background:var(--blue2);color:var(--blue);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
+main{max-width:900px;margin:auto;padding:14px}.screen{display:none}.screen.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+h2{font-size:19px;margin:0 0 12px}h3{font-size:16px;margin:0 0 9px}.muted{color:var(--muted);font-size:13px}.small{font-size:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#fafcff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:12px;color:var(--muted)}.stat b{display:block;color:var(--text);font-size:22px;margin-top:5px}
+button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.secondary{background:#edf1f6}.good{background:var(--green2);color:var(--green)}.warn{background:var(--amber2);color:var(--amber)}.danger{background:var(--red2);color:var(--red)}
+.full{width:100%}.btnrow{display:flex;gap:9px;flex-wrap:wrap}label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}input,textarea,select{width:100%;font:inherit;border:1px solid #cfd6e1;border-radius:12px;padding:11px 12px;background:#fff}textarea{min-height:78px;resize:vertical}.row{margin-bottom:13px}.range{display:flex;gap:10px;align-items:center}.range input{padding:0}.score{min-width:42px;text-align:center;background:var(--blue2);color:var(--blue);border-radius:10px;padding:8px;font-weight:800}
+.hero{background:linear-gradient(135deg,#0f5bd3,#3c82f6);color:#fff}.hero .muted{color:#dbeafe}.heroBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick button{min-height:68px;text-align:right}
+.helpstep{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;background:#fff}.num{min-width:32px;height:32px;border-radius:50%;background:var(--blue2);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800}.mantra{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;line-height:1.6}
+.bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#64748b;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
+pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);padding:12px;border-radius:12px;line-height:1.55}.sources a{display:block;margin:8px 0;color:var(--blue);text-decoration:none;word-break:break-word}
+canvas{width:100%;height:220px;background:#fff;border-radius:12px}.notice{background:var(--amber2);border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:12px;font-size:12px}
+@media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.quick{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="brand">CBT+<small>חרדת בריאות · יומן וכלים</small></div><div class="pill" id="todayPill"></div></div></header>
+<main>
+<section class="screen active" id="home">
+  <div class="card hero"><h2>איך אתה מרגיש עכשיו?</h2><div class="muted">אם יש גל חרדה, עבור מיד למסך “מה עוזר לי עכשיו”.</div><div class="heroBtns" style="margin-top:14px"><button class="good" onclick="showScreen('help')">מה עוזר לי עכשיו</button><button class="secondary" onclick="showScreen('daily')">דף יומי</button></div></div>
+  <div class="card"><h2>תמונה מהירה</h2><div class="grid3"><div class="stat">ימים שנרשמו<b id="statDays">0</b></div><div class="stat">ממוצע בוקר<b id="statMorning">—</b></div><div class="stat">ממוצע ערב<b id="statEvening">—</b></div></div></div>
+  <div class="card"><h2>קיצורי דרך</h2><div class="quick"><button class="secondary" onclick="showScreen('help')">גל חרדה עכשיו</button><button class="secondary" onclick="showScreen('knowledge')">שאלה מהרשת</button><button class="secondary" onclick="showScreen('daily')">בוקר / ערב</button><button class="secondary" onclick="showScreen('trends')">מגמות</button></div></div>
+</section>
+<section class="screen" id="help">
+  <div class="card"><h2>מה עוזר לי עכשיו</h2><div class="muted">מסך פעולה קצר. המטרה אינה להוכיח שאין סכנה, אלא לעזור למערכת להירגע בלי להיכנס למעגל בדיקות.</div></div>
+  <div class="card">
+    <div class="helpstep"><div class="num">1</div><div><h3>עצור בדיקות ל־10 דקות</h3><div class="muted">לא דופק, לא לחץ דם, לא גוגל, לא לחיצה חוזרת על אזור בגוף.</div></div></div>
+    <div class="helpstep"><div class="num">2</div><div><h3>בחר פעולה שעוזרת לך בפועל</h3><div class="muted">מקלחת · שיחה · עבודה/עיסוק · הליכה רגועה · מוזיקה.</div></div></div>
+    <div class="helpstep"><div class="num">3</div><div><h3>נשימה רגועה</h3><div class="muted">שאיפה 4 שניות, נשיפה 6 שניות, במשך 2 דקות.</div></div></div>
+    <div class="helpstep"><div class="num">4</div><div><h3>משפט תזכורת</h3><div class="mantra">התחושה אמיתית, אבל לא כל תחושה היא סכנה. כבר היו לי גלים כאלה והם חלפו. אני לא חייב לפתור את זה עכשיו.</div></div></div>
+    <div class="helpstep"><div class="num">5</div><div><h3>חזור לפעילות</h3><div class="muted">בחר משימה קטנה ל־10 דקות והעבר את הקשב מהגוף אל הפעילות.</div></div></div>
+  </div>
+  <div class="card"><h3>מה עוזר לי אישית</h3><div class="quick"><button class="good" onclick="logHelp('מקלחת')">מקלחת</button><button class="good" onclick="logHelp('שיחה')">שיחה</button><button class="good" onclick="logHelp('עבודה/עיסוק')">עבודה / עיסוק</button><button class="good" onclick="logHelp('הליכה')">הליכה רגועה</button></div><div id="helpStatus" class="muted" style="margin-top:10px"></div></div>
+  <div class="notice">סימפטום חדש, חריג או חמור — במיוחד כאב חזה משמעותי, קוצר נשימה חריג, עילפון או חולשה נוירולוגית — מצריך הערכה רפואית ולא שימוש במסך זה כתחליף.</div>
+</section>
+<section class="screen" id="daily">
+  <div class="card"><h2>דף יומי</h2>
+    <div class="row"><label>תאריך</label><input id="date" type="date"></div>
+    <div class="row"><label>דריכות בבוקר <span id="mLab">5</span>/10</label><div class="range"><input id="morning" type="range" min="0" max="10" value="5"><span class="score" id="mBox">5</span></div></div>
+    <div class="row"><label>מה אני מרגיש בגוף?</label><textarea id="body"></textarea></div>
+    <div class="row"><label>מה המוח אומר שזה אולי אומר?</label><textarea id="thought"></textarea></div>
+    <div class="row"><label>משימת CBT להיום</label><select id="goal"><option>לדחות בדיקה ב־30 דקות</option><option>לא לחפש סימפטומים עד הערב</option><option>לא לבקש אישור חוזר</option><option>להמשיך בפעילות למרות תחושה קלה</option></select></div>
+    <div class="row"><label>כמה פעמים רציתי לבדוק?</label><input id="urge" inputmode="numeric"></div>
+    <div class="row"><label>כמה פעמים לא הגבתי מיד?</label><input id="resisted" inputmode="numeric"></div>
+    <div class="row"><label>מה קרה כשלא בדקתי?</label><select id="result"><option value=""></option><option>עלתה</option><option>נשארה</option><option>ירדה לבד</option></select></div>
+    <div class="row"><label>הצלחה אחת היום</label><textarea id="success"></textarea></div>
+    <div class="row"><label>חרדה בערב <span id="eLab">3</span>/10</label><div class="range"><input id="evening" type="range" min="0" max="10" value="3"><span class="score" id="eBox">3</span></div></div>
+    <div class="btnrow"><button class="primary" onclick="saveDay()">שמור</button><button class="secondary" onclick="loadDay()">טען</button><button class="danger" onclick="deleteDay()">מחק</button></div><div class="muted" id="saveStatus" style="margin-top:8px"></div>
+  </div>
+</section>
+<section class="screen" id="knowledge">
+  <div class="card"><h2>שאלה על נושא שעולה אצלי</h2><div class="muted">התשובה יכולה להשתמש בחיפוש רשת עדכני. היומן נשלח רק אם תבחר לכלול אותו.</div>
+    <div class="row" style="margin-top:12px"><label>השאלה שלך</label><textarea id="question" placeholder="למשל: למה מתח יכול לגרום לפרפרים בבטן?"></textarea></div>
+    <div class="row"><label><input id="includeJournal" type="checkbox" style="width:auto"> כלול את נתוני היום בשאלה</label></div>
+    <button class="primary full" onclick="askWeb()">שאל</button><div id="answerBox" style="margin-top:12px"></div>
+  </div>
+  <div class="notice">האפליקציה אינה מיועדת לאבחן מחלה. בשאלות רפואיות היא נותנת מידע כללי, מקורות וסימני אזהרה רלוונטיים.</div>
+</section>
+<section class="screen" id="trends"><div class="card"><h2>מגמות</h2><canvas id="chart" width="700" height="220"></canvas><div class="muted">כחול = בוקר · ירוק = ערב · 14 הימים האחרונים.</div></div><div class="card"><h3>דפוסים</h3><div id="patternText" class="muted">עדיין אין מספיק נתונים.</div></div></section>
+</main>
+<nav class="bottom"><button class="navbtn active" data-screen="home" onclick="showScreen('home')">בית</button><button class="navbtn" data-screen="help" onclick="showScreen('help')">עוזר עכשיו</button><button class="navbtn" data-screen="daily" onclick="showScreen('daily')">יומן</button><button class="navbtn" data-screen="knowledge" onclick="showScreen('knowledge')">ידע</button><button class="navbtn" data-screen="trends" onclick="showScreen('trends')">מגמות</button></nav>
+<script>
+const KEY='cbt_plus_v3',HELPKEY='cbt_help_log_v1', $=id=>document.getElementById(id);
+function isoToday(){const d=new Date(),o=d.getTimezoneOffset();return new Date(d.getTime()-o*60000).toISOString().slice(0,10)}
+$('todayPill').textContent=new Date().toLocaleDateString('he-IL');$('date').value=isoToday();
+function db(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}} function saveDB(x){localStorage.setItem(KEY,JSON.stringify(x))}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));if(id==='trends')drawChart();if(id==='home')refreshStats();window.scrollTo(0,0)}
+function sync(){$('mLab').textContent=$('mBox').textContent=$('morning').value;$('eLab').textContent=$('eBox').textContent=$('evening').value}$('morning').oninput=sync;$('evening').oninput=sync;
+function collect(){return{date:$('date').value,morning:+$('morning').value,body:$('body').value,thought:$('thought').value,goal:$('goal').value,urge:$('urge').value,resisted:$('resisted').value,result:$('result').value,success:$('success').value,evening:+$('evening').value}}
+function fill(x={}){$('morning').value=x.morning??5;$('body').value=x.body??'';$('thought').value=x.thought??'';$('goal').value=x.goal??$('goal').options[0].value;$('urge').value=x.urge??'';$('resisted').value=x.resisted??'';$('result').value=x.result??'';$('success').value=x.success??'';$('evening').value=x.evening??3;sync()}
+function saveDay(){let x=db(),d=collect();x[d.date]=d;saveDB(x);$('saveStatus').textContent='נשמר';refreshStats()}function loadDay(){let x=db();fill(x[$('date').value]||{});$('saveStatus').textContent=x[$('date').value]?'נטען':'אין נתונים לתאריך זה'}function deleteDay(){let x=db();if(x[$('date').value]&&confirm('למחוק את היום?')){delete x[$('date').value];saveDB(x);fill({});refreshStats()}}
+function refreshStats(){const a=Object.values(db());$('statDays').textContent=a.length;let m=a.map(x=>+x.morning).filter(Number.isFinite),e=a.map(x=>+x.evening).filter(Number.isFinite);$('statMorning').textContent=m.length?(m.reduce((a,b)=>a+b,0)/m.length).toFixed(1):'—';$('statEvening').textContent=e.length?(e.reduce((a,b)=>a+b,0)/e.length).toFixed(1):'—'}
+function logHelp(name){let arr=[];try{arr=JSON.parse(localStorage.getItem(HELPKEY))||[]}catch{}arr.push({ts:new Date().toISOString(),name});localStorage.setItem(HELPKEY,JSON.stringify(arr));$('helpStatus').textContent='נרשם: '+name+' · תן לפעולה 10 דקות בלי בדיקות.'}
+async function askWeb(){const q=$('question').value.trim();if(!q)return;$('answerBox').innerHTML='<div class="muted">מחפש ומנסח תשובה…</div>';let payload={question:q};if($('includeJournal').checked)payload.journal=collect();try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');let html='<pre class="answer"></pre>';$('answerBox').innerHTML=html;$('answerBox').querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const box=document.createElement('div');box.className='sources';box.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;box.appendChild(a)});$('answerBox').appendChild(box)}}catch(e){$('answerBox').innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע. ודא ש-OPENAI_API_KEY מוגדר ב-Cloudflare.</div>'}}
+function drawChart(){const c=$('chart'),ctx=c.getContext('2d'),rows=Object.values(db()).sort((a,b)=>a.date.localeCompare(b.date)).slice(-14);ctx.clearRect(0,0,c.width,c.height);ctx.strokeStyle='#d8dee9';ctx.lineWidth=1;for(let i=0;i<=5;i++){let y=20+i*36;ctx.beginPath();ctx.moveTo(35,y);ctx.lineTo(680,y);ctx.stroke()}if(!rows.length){ctx.fillStyle='#6b7280';ctx.font='16px Arial';ctx.fillText('אין עדיין נתונים',280,110);$('patternText').textContent='עדיין אין מספיק נתונים.';return}function line(key,color){ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();rows.forEach((r,i)=>{let x=45+i*(620/Math.max(1,rows.length-1)),y=200-(+r[key])*17;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke()}line('morning','#0f5bd3');line('evening','#12804a');const improved=rows.filter(r=>+r.evening<+r.morning).length;$('patternText').textContent=rows.length>=3?`ב־${improved} מתוך ${rows.length} ימים רמת הערב הייתה נמוכה מרמת הבוקר.`:'נדרשים לפחות 3 ימים כדי לזהות דפוס.'}
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js'));sync();loadDay();refreshStats();
+</script>
+</body></html>
