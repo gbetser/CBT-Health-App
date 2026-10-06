@@ -19,7 +19,7 @@ button{font:inherit;border:0;border-radius:12px;padding:12px 14px;font-weight:70
 .hero{background:linear-gradient(135deg,#0f5bd3,#3b82f6);color:#fff}.hero .muted{color:#dbeafe}.heroBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fafcff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;font-size:12px;color:var(--muted)}.stat b{display:block;color:var(--text);font-size:22px;margin-top:4px}
 .helpstep{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px}.num{min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--blue2);color:var(--blue);font-weight:800}.mantra{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;line-height:1.65}.notice{background:var(--amber2);border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:12px;font-size:12px}
-.event{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:#fff}.event .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:#eef4ff;color:#0f5bd3;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin:2px}.progressbar{height:10px;background:#eef2f6;border-radius:999px;overflow:hidden}.progressbar>div{height:100%;background:var(--green);width:0}
+.event{border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:#fff}.event .meta{font-size:12px;color:var(--muted);margin-bottom:6px}.tag{display:inline-block;background:#eef4ff;color:#0f5bd3;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700;margin:2px}.progressbar{height:10px;background:#eef2f6;border-radius:999px;overflow:hidden}.progressbar>div{height:100%;background:var(--green);width:0}.profilebox{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.profilelist{margin:6px 0 0;padding-right:18px;line-height:1.7}.profilelist li{margin-bottom:3px}
 .bottom{position:fixed;bottom:0;right:0;left:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.navbtn{background:#fff;color:#667085;padding:8px 4px;font-size:11px}.navbtn.active{color:var(--blue);background:var(--blue2)}
 pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);padding:12px;border-radius:12px;line-height:1.55}.sources a{display:block;margin:8px 0;color:var(--blue);text-decoration:none;word-break:break-word}
 @media(max-width:620px){.grid2,.grid3{grid-template-columns:1fr}.heroBtns{grid-template-columns:1fr 1fr}}
@@ -32,11 +32,25 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
   <div class="card hero"><h2>המטרה: פחות פעולות ביטחון, יותר חזרה לשגרה</h2><div class="muted">לא מודדים הצלחה לפי “כמה הרגשתי רגוע”, אלא לפי היכולת להישאר עם אי־ודאות בלי לבדוק מיד.</div><div class="heroBtns"><button class="good" onclick="showScreen('help')">גל חרדה עכשיו</button><button class="secondary" onclick="showScreen('event')">תעד אירוע CBT</button></div></div>
   <div class="card"><h2>התקדמות התנהגותית</h2><div class="grid3"><div class="stat">אירועי CBT<b id="homeEvents">0</b></div><div class="stat">פעולות ביטחון שנדחו<b id="homeResisted">0</b></div><div class="stat">חשיפות שהושלמו<b id="homeExposures">0</b></div></div></div>
   <div class="card"><h3>יעד להיום</h3><select id="dailyTarget"><option>לדחות בדיקה אחת לפחות ב־30 דקות</option><option>לא לחפש סימפטומים ברשת עד הערב</option><option>לא לבקש אישור חוזר על סימפטום שכבר נבדק</option><option>להמשיך בפעילות רגילה למרות תחושה גופנית קלה</option><option>לבצע חשיפה אחת לאי־ודאות</option></select><button class="primary full" style="margin-top:10px" onclick="saveTarget()">שמור יעד</button><div id="targetStatus" class="muted" style="margin-top:8px"></div></div>
+  <div class="card"><h3>הדפוס שלי</h3><div id="myPatternSummary" class="muted">עדיין לא הוגדר דפוס אישי.</div><button class="secondary full" style="margin-top:10px" onclick="showProfileEditor()">ערוך את הדפוס שלי</button></div>
   <div class="card"><h3>עיקרון היום</h3><div class="mantra">אני לא צריך ודאות מוחלטת כדי להמשיך את היום. תחושה יכולה להיות לא נעימה בלי להיות מסוכנת, ואני בוחר פעולה לפי המציאות — לא לפי הדחף לבדוק.</div></div>
 </section>
 
+<section class="screen" id="profile">
+  <div class="card"><h2>הדפוס שלי</h2><div class="muted">המידע במסך הזה נשמר רק במכשיר שלך ואינו נשלח ל-GitHub או ל-Cloudflare.</div></div>
+  <div class="card">
+    <div class="row"><label>טריגרים שכיחים</label><textarea id="profileTriggers" placeholder="למשל: תחושות בבטן, דופק מורגש, כאב, בוקר אחרי שינה לא טובה"></textarea></div>
+    <div class="row"><label>המחשבות שהמוח מייצר</label><textarea id="profileThoughts" placeholder="למשל: אולי זו מחלה קשה, אולי זה לא יעבור"></textarea></div>
+    <div class="row"><label>מה מחזיר אותי לתפקוד</label><textarea id="profileHelps" placeholder="למשל: מקלחת, הליכה, עבודות בית, שיחה, עבודה, תפילה/מדיטציה"></textarea></div>
+    <div class="row"><label>מה נוטה לשמר את המעגל</label><textarea id="profileMaintains" placeholder="למשל: בדיקות חוזרות, חיפוש ברשת, מישוש הגוף, בקשת אישור שוב ושוב"></textarea></div>
+    <div class="row"><label>שגרת בוקר שעוזרת לי</label><textarea id="profileMorning" placeholder="למשל: לקום מהמיטה, להתקלח, לאכול משהו קטן, להתחיל פעילות"></textarea></div>
+    <div class="row"><label>משפט עוגן אישי</label><textarea id="profileAnchor" placeholder="למשל: כבר עברתי גלים כאלה; איני צריך לפתור כל תחושה עכשיו"></textarea></div>
+    <button class="primary full" onclick="saveProfile()">שמור את הדפוס שלי</button><div id="profileStatus" class="muted" style="margin-top:8px"></div>
+  </div>
+</section>
+
 <section class="screen" id="help">
-  <div class="card"><h2>מה עוזר לי עכשיו</h2><div class="muted">מסך פעולה בזמן גל חרדה. המטרה: לא לנהל ויכוח עם הגוף, אלא לצמצם את מעגל הבדיקה וההרגעה.</div></div>
+  <div class="card"><h2>מה עוזר לי עכשיו</h2><div class="muted">מסך פעולה בזמן גל חרדה. המטרה: לא לנהל ויכוח עם הגוף, אלא לצמצם את מעגל הבדיקה וההרגעה.</div><div id="helpProfile" class="profilebox muted" style="display:none"></div></div>
   <div class="card">
     <div class="helpstep"><div class="num">1</div><div><h3>עצור פעולות ביטחון ל־10 דקות</h3><div class="muted">לא למדוד, לא לבדוק בגוגל, לא ללחוץ שוב ושוב על הגוף, לא לבקש אישור נוסף.</div></div></div>
     <div class="helpstep"><div class="num">2</div><div><h3>תן שם למה שקורה</h3><div class="muted">“יש כאן תחושה + פירוש מאיים + דחף לבדוק.” עצם הזיהוי מפחית אוטומטיות.</div></div></div>
@@ -54,7 +68,7 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
 <section class="screen" id="event">
   <div class="card"><h2>אירוע CBT</h2><div class="muted">תעד רק אירועים משמעותיים. המטרה היא ללמוד את המעגל, לא לעקוב אחרי כל תחושה.</div></div>
   <div class="card">
-    <div class="row"><label>מה היה הטריגר?</label><select id="trigger"><option>תחושה גופנית</option><option>כאב</option><option>דופק / פעימות</option><option>בטן / יציאה</option><option>גל חום / רעד</option><option>מידע רפואי שקראתי</option><option>מחשבה בלבד</option><option>אחר</option></select></div>
+    <div class="row"><label>מה היה הטריגר?</label><select id="trigger"><option>תחושה גופנית</option><option>כאב</option><option>דופק / פעימות</option><option>בטן / יציאה</option><option>גל חום / רעד</option><option>מידע רפואי שקראתי</option><option>עומס/ויכוח/קונפליקט</option><option>בוקר / יקיצה</option><option>שינה לא מספקת</option><option>רעב / חוסר תיאבון</option><option>מחשבה בלבד</option><option>אחר</option></select></div>
     <div class="row"><label>תיאור קצר של הטריגר</label><textarea id="triggerText" placeholder="למשל: הרגשתי פעימה חזקה בזמן ישיבה"></textarea></div>
     <div class="row"><label>מה הייתה המחשבה האוטומטית?</label><textarea id="automaticThought" placeholder="למשל: אולי יש לי בעיה בלב"></textarea></div>
     <div class="row"><label>כמה האמנתי למחשבה באותו רגע? <span id="beliefBeforeLab">70</span>%</label><div class="range"><input id="beliefBefore" type="range" min="0" max="100" step="5" value="70"><span class="score" id="beliefBeforeBox">70%</span></div></div>
@@ -107,7 +121,7 @@ pre.answer{white-space:pre-wrap;background:#fafafa;border:1px solid var(--line);
 <button class="navbtn" data-screen="progress" onclick="showScreen('progress')">התקדמות</button>
 </nav>
 <script>
-const EVENT_KEY='cbt_events_v4', EXP_KEY='cbt_exposures_v4', TARGET_KEY='cbt_daily_target_v4', HELP_KEY='cbt_help_log_v2';
+const EVENT_KEY='cbt_events_v4', EXP_KEY='cbt_exposures_v4', TARGET_KEY='cbt_daily_target_v4', HELP_KEY='cbt_help_log_v2', PROFILE_KEY='cbt_personal_profile_v1';
 const $=id=>document.getElementById(id);
 $('todayPill').textContent=new Date().toLocaleDateString('he-IL');
 
@@ -119,6 +133,10 @@ function syncBeliefs(){beliefBeforeLab.textContent=beliefBefore.value;beliefBefo
 beliefBefore.oninput=syncBeliefs;beliefAfter.oninput=syncBeliefs;syncBeliefs();
 
 function saveTarget(){localStorage.setItem(TARGET_KEY,JSON.stringify({date:new Date().toISOString().slice(0,10),target:dailyTarget.value}));targetStatus.textContent='היעד נשמר.'}
+function profile(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY))||{}}catch{return{}}}
+function showProfileEditor(){showScreen('profile');const p=profile();profileTriggers.value=p.triggers||'';profileThoughts.value=p.thoughts||'';profileHelps.value=p.helps||'';profileMaintains.value=p.maintains||'';profileMorning.value=p.morning||'';profileAnchor.value=p.anchor||''}
+function saveProfile(){const p={triggers:profileTriggers.value.trim(),thoughts:profileThoughts.value.trim(),helps:profileHelps.value.trim(),maintains:profileMaintains.value.trim(),morning:profileMorning.value.trim(),anchor:profileAnchor.value.trim()};localStorage.setItem(PROFILE_KEY,JSON.stringify(p));profileStatus.textContent='הדפוס האישי נשמר במכשיר בלבד.';renderProfile()}
+function renderProfile(){const p=profile();const parts=[];if(p.triggers)parts.push('<b>טריגרים:</b> '+esc(p.triggers));if(p.thoughts)parts.push('<b>מחשבות:</b> '+esc(p.thoughts));if(p.helps)parts.push('<b>מה עוזר:</b> '+esc(p.helps));myPatternSummary.innerHTML=parts.length?parts.join('<br>'):'עדיין לא הוגדר דפוס אישי.';if(p.helps||p.anchor||p.morning){helpProfile.style.display='block';helpProfile.innerHTML=(p.helps?'<b>מה בדרך כלל עוזר לי:</b><br>'+esc(p.helps)+'<br><br>':'')+(p.morning?'<b>אם זה בוקר:</b><br>'+esc(p.morning)+'<br><br>':'')+(p.anchor?'<b>משפט העוגן שלי:</b><br>'+esc(p.anchor):'')}else helpProfile.style.display='none'}
 function logHelp(name){const a=arr(HELP_KEY);a.push({ts:new Date().toISOString(),name});saveArr(HELP_KEY,a);helpStatus.textContent='נרשם: '+name+' · תן לפעולה 10 דקות בלי בדיקות.'}
 
 function saveEvent(){
@@ -157,6 +175,6 @@ async function askWeb(){
  try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const data=await r.json();if(!r.ok)throw new Error(data.error||'שגיאה');answerBox.innerHTML='<pre class="answer"></pre>';answerBox.querySelector('pre').textContent=data.answer||'לא התקבלה תשובה.';if(data.sources?.length){const b=document.createElement('div');b.className='sources';b.innerHTML='<h3>מקורות</h3>';data.sources.forEach(s=>{const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent=s.title||s.url;b.appendChild(a)});answerBox.appendChild(b)}}catch(e){answerBox.innerHTML='<div class="notice">לא ניתן לקבל תשובה כרגע: '+esc(e.message||'שגיאה לא ידועה')+'</div>'}
 }
 if('serviceWorker' in navigator)window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('/sw.js');await reg.update()}catch(e){}});
-renderHome();renderEvents();renderExposures();
+renderHome();renderEvents();renderExposures();renderProfile();
 </script>
 </body></html>
