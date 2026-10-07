@@ -246,6 +246,7 @@ function renderProfile(){const p=profile();const parts=[];if(p.triggers)parts.pu
 function logHelp(name){const a=arr(HELP_KEY);a.push({ts:new Date().toISOString(),name});saveArr(HELP_KEY,a);helpStatus.textContent='נרשם: '+name+' · תן לפעולה 10 דקות בלי בדיקות.'}
 
 function saveEvent(){
+ if(!confirm('לשמור את אירוע ה-CBT הזה?'))return;
  const e={id:Date.now(),ts:new Date().toISOString(),trigger:trigger.value,triggerText:triggerText.value.trim(),thought:automaticThought.value.trim(),beliefBefore:+beliefBefore.value,safety:safetyBehavior.value,action:actualAction.value,delay:+delayMinutes.value,course:anxietyCourse.value,learning:learning.value.trim(),beliefAfter:+beliefAfter.value,balanced:balancedThought.value.trim()};
  const a=arr(EVENT_KEY);a.push(e);saveArr(EVENT_KEY,a);eventStatus.textContent='האירוע נשמר.';renderEvents();renderHome();
 }
@@ -257,7 +258,7 @@ function deleteEvent(id){
  const a=arr(EVENT_KEY);
  const e=a.find(x=>x.id===id);
  if(!e)return;
- if(!confirm('למחוק את אירוע ה-CBT הזה?'))return;
+ if(!confirm('האם אתה בטוח שברצונך למחוק את אירוע ה-CBT הזה? לא ניתן לבטל את המחיקה.'))return;
  const next=a.filter(x=>x.id!==id);
  saveArr(EVENT_KEY,next);
  renderEvents();
