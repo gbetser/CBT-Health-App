@@ -251,7 +251,18 @@ function saveEvent(){
 }
 function renderEvents(){
  const a=arr(EVENT_KEY).slice(-5).reverse();
- recentEvents.innerHTML=a.length?a.map(e=>'<div class="event"><div class="meta">'+new Date(e.ts).toLocaleString('he-IL')+'</div><span class="tag">'+esc(e.trigger)+'</span><span class="tag">'+esc(e.action)+'</span><div style="margin-top:8px"><b>'+esc(e.thought||e.triggerText||'אירוע')+'</b></div><div class="muted">אמונה: '+e.beliefBefore+'% → '+e.beliefAfter+'% · דחייה: '+e.delay+' דק׳</div><div class="muted" style="margin-top:5px">'+esc(e.learning)+'</div></div>').join(''):'<div class="muted">עדיין אין אירועים שמורים.</div>';
+ recentEvents.innerHTML=a.length?a.map(e=>'<div class="event"><div class="meta">'+new Date(e.ts).toLocaleString('he-IL')+'</div><span class="tag">'+esc(e.trigger)+'</span><span class="tag">'+esc(e.action)+'</span><div style="margin-top:8px"><b>'+esc(e.thought||e.triggerText||'אירוע')+'</b></div><div class="muted">אמונה: '+e.beliefBefore+'% → '+e.beliefAfter+'% · דחייה: '+e.delay+' דק׳</div><div class="muted" style="margin-top:5px">'+esc(e.learning)+'</div><button class="danger" style="margin-top:10px;width:100%" onclick="deleteEvent('+e.id+')">מחק אירוע</button></div>').join(''):'<div class="muted">עדיין אין אירועים שמורים.</div>';
+}
+function deleteEvent(id){
+ const a=arr(EVENT_KEY);
+ const e=a.find(x=>x.id===id);
+ if(!e)return;
+ if(!confirm('למחוק את אירוע ה-CBT הזה?'))return;
+ const next=a.filter(x=>x.id!==id);
+ saveArr(EVENT_KEY,next);
+ renderEvents();
+ renderHome();
+ renderProgress();
 }
 function saveExposure(){
  const e={id:Date.now(),ts:new Date().toISOString(),type:exposureType.value,text:exposureText.value.trim(),prediction:prediction.value.trim(),completed:completed.value,outcome:actualOutcome.value.trim(),learning:exposureLearning.value.trim()};
